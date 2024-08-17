@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "ashinzekene.nestjs",
+    "steoates.autoimport",
+    "chouzz.vscode-better-align",
+    "aaron-bond.better-comments",
+    "codeium.codeium",
+    "wallabyjs.console-ninja",
+    "visualstudioexptteam.vscodeintellicode",
+    "orta.vscode-jest",
+    "christian-kohler.path-intellisense",
+    "rangav.vscode-thunder-client",
+    "vscode-icons-team.vscode-icons",
+    "mongodb.mongodb-vscode",
+    "oderwat.indent-rainbow",
+    "usernamehw.errorlens",
+    "ms-azuretools.vscode-docker"
+  ]
+}

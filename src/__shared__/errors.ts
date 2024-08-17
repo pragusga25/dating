@@ -1,0 +1,42 @@
+import type { IHttpErrorResponse } from './interfaces'
+
+export class HttpError extends Error {
+  status: number
+  response: IHttpErrorResponse
+
+  constructor(status: number, code: string, details?: string[]) {
+    super(details?.join(', '))
+    this.status = status
+    this.response = {
+      ok: false,
+      error: {
+        code,
+        details,
+      },
+    }
+  }
+}
+
+export class AccessTokenInvalidError extends HttpError {
+  constructor() {
+    super(401, 'auth/token-invalid')
+  }
+}
+
+export class AccessTokenExpiredError extends HttpError {
+  constructor() {
+    super(401, 'auth/access-token-expired')
+  }
+}
+
+export class MissingAccessTokenError extends HttpError {
+  constructor() {
+    super(401, 'auth/missing-access-token')
+  }
+}
+
+export class CurrentUserNotFound extends HttpError {
+  constructor() {
+    super(404, 'user/current-user-not-found')
+  }
+}

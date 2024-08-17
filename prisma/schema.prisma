@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  password       String
+  name           String
+  dateOfBirth    DateTime
+  gender         Gender   @default(MALE)
+  bio            String?
+  profilePicture String?
+  isVerified     Boolean  @default(false)
+  isPremium      Boolean  @default(false)
+
+  dailySwipesCount Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  swipes         Swipe[]    @relation("UserSwipes")
+  receivedSwipes Swipe[]    @relation("ReceivedSwipes")
+  purchases      Purchase[]
+}
+
+enum Action {
+  LIKE
+  PASS
+}
+
+model Swipe {
+  id        String   @id @default(cuid())
+  userId    String
+  swipedId  String
+  action    Action   @default(PASS)
+  createdAt DateTime @default(now())
+
+  user   User @relation("UserSwipes", fields: [userId], references: [id], onDelete: Cascade)
+  swiped User @relation("ReceivedSwipes", fields: [swipedId], references: [id], onDelete: Cascade)
+}
+
+model PremiumPackage {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  code        String     @unique
+  price       Float
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  purchases   Purchase[]
+}
+
+model Purchase {
+  id               String   @id @default(cuid())
+  userId           String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  premiumPackageId String
+
+  premiumPackage PremiumPackage @relation(fields: [premiumPackageId], references: [id])
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, premiumPackageId])
+}

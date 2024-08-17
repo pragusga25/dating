@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    container_name: dating_api_postgres
+    environment:
+      POSTGRES_DB: dating_api
+      POSTGRES_USER: dating_user
+      POSTGRES_PASSWORD: dating_password
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
