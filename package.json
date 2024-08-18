@@ -5,7 +5,7 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev ./src/server.ts --watch",
     "build": "tsc",
-    "test": "jest --coverage",
+    "test": "jest --coverage --forceExit",
     "check": "npx @biomejs/biome check ./src",
     "check:write": "npx @biomejs/biome check --write ./src",
     "lint": "npx @biomejs/biome lint ./src",

@@ -4,7 +4,8 @@
     "./dist",
     "__tests__",
     "jest.config.js",
-    "migrations"
+    "migrations",
+    "**/*.test.ts"
   ],
   "ts-node": {
     "transpileOnly": true,

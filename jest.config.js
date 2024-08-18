@@ -1,5 +1,5 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports= {
+module.exports = {
   testEnvironment: 'node',
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {}],
@@ -7,7 +7,7 @@ module.exports= {
 
   // Collect coverage only from service.ts and route.ts files
   collectCoverageFrom: [
-    '**/*.(service|route).ts',
+    './src/**/*.(service|route).ts',
     '!**/node_modules/**',
     '!**/dist/**',
   ],
