@@ -1,0 +1,75 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id String [pk]
+  email String [unique, not null]
+  password String [not null]
+  name String [not null]
+  dateOfBirth DateTime [not null]
+  gender Gender [not null, default: 'MALE']
+  bio String
+  profilePicture String
+  isVerified Boolean [not null, default: false]
+  isPremium Boolean [not null, default: false]
+  dailySwipesCount Int [not null, default: 0]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  swipes Swipe [not null]
+  receivedSwipes Swipe [not null]
+  purchases Purchase [not null]
+}
+
+Table Swipe {
+  id String [pk]
+  userId String [not null]
+  swipedId String [not null]
+  action Action [not null, default: 'PASS']
+  createdAt DateTime [default: `now()`, not null]
+  user User [not null]
+  swiped User [not null]
+}
+
+Table PremiumPackage {
+  id String [pk]
+  name String [not null]
+  description String [not null]
+  code String [unique, not null]
+  price Float [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  purchases Purchase [not null]
+}
+
+Table Purchase {
+  id String [pk]
+  userId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  premiumPackageId String [not null]
+  premiumPackage PremiumPackage [not null]
+  user User [not null]
+
+  indexes {
+    (userId, premiumPackageId) [unique]
+  }
+}
+
+Enum Gender {
+  MALE
+  FEMALE
+}
+
+Enum Action {
+  LIKE
+  PASS
+}
+
+Ref: Swipe.userId > User.id [delete: Cascade]
+
+Ref: Swipe.swipedId > User.id [delete: Cascade]
+
+Ref: Purchase.premiumPackageId > PremiumPackage.id
+
+Ref: Purchase.userId > User.id [delete: Cascade]

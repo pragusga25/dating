@@ -1,14 +1,5 @@
 version: '3.8'
 services:
-  # app:
-  #   build: .
-  #   ports:
-  #     - '${PORT}:${PORT}'
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - db
-
   db:
     image: postgres:13
     container_name: dating_api_postgres

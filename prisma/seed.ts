@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { Gender, type User } from '@prisma/client'
 import bcrypt from 'bcrypt'
-import { context } from './context'
+import { context } from '../src/context'
 
 export const seed = async () => {
   console.log('Seeding database...')
