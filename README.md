@@ -77,8 +77,6 @@ This project is a backend API for a dating simulator application. It provides fu
 
 Before running the application, make sure to set up your `.env` file with the appropriate configuration.
 
-Berikut adalah pembaruan README bagian tersebut:
-
 ### Running Locally (without Docker)
 
 1. Install dependencies:
@@ -99,13 +97,19 @@ Berikut adalah pembaruan README bagian tersebut:
    npx prisma migrate dev
    ```
 
-4. (Optional) Seed the database:
+4. Generate Prisma client:
+
+   ```sh
+   npx prisma generate
+   ```
+
+5. (Optional) Seed the database:
 
    ```sh
    npx prisma db seed
    ```
 
-5. Start the application:
+6. Start the application:
 
    ```sh
    npm run dev
