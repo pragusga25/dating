@@ -187,7 +187,7 @@ It's recommended to run these commands before committing your changes to ensure 
 
 ## API Documentation
 
-You can access and test the API endpoints using Postman at <https://posdada.xyz>.
+You can access and test the API endpoints using Postman at <[Dating Simulator API](https://documenter.getpostman.com/view/16401831/2sA3s9CTEd)>.
 
 ## Notes
 
